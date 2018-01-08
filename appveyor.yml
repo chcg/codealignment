@@ -27,6 +27,9 @@ install:
     - nuget restore "%APPVEYOR_BUILD_FOLDER%"\CodeAlignment.VisualStudio\packages.config -PackagesDirectory "%APPVEYOR_BUILD_FOLDER%"\packages
     - nuget restore "%APPVEYOR_BUILD_FOLDER%"\Test\CodeAlignment.Common.Test\packages.config -PackagesDirectory "%APPVEYOR_BUILD_FOLDER%"\packages
 
+init:
+    - git config --global core.autocrlf true
+
 build_script:
     - cd "%APPVEYOR_BUILD_FOLDER%"
     - msbuild code-alignment.sln /m /t:CodeAlignment_Npp /p:configuration="%configuration%" /p:platform="%platform_input%" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
